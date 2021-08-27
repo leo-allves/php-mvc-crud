@@ -1,0 +1,19 @@
+
+<div id="conteudo">
+    <section>
+        <!-- {{area_dinamica}} -->
+        <h1 class="text-blue-400 bg-gray-700 p-2 text-center rounded-lg mb-6 border-r-8 border-l-8 border-t-2 border-b-2 border-black-600">Postagens</h1>
+
+        {% for postagem in postagens %}
+            <article class="bg-indigo-100 text-gray-400 p-2 rounded-md">
+                <header>
+                    <h2><a class="text-blue-900" href="#">{{postagem.titulo}}</a></h2>
+                </header>
+
+                <p class="text-gray-600">{{postagem.conteudo}}</p> <!--| {{postagem.id}}-->
+            </article>
+        {% endfor %}
+
+    </section>
+</div>
+        
