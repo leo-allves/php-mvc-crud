@@ -7,22 +7,22 @@ class Postagem
     public static function selecionaTodos()
     {
         $con = Connection::getConn();
-
         // var_dump($con);
 
         #Connectar no BD Postagem acessar registros
-   
-        $sql= "SELECT * FROM postagem ORDER BY id DESC"; //pegand. registo de forma decrecente
+        $sql= "SELECT * FROM postagem ORDER BY id DESC"; //
         $sql = $con->prepare($sql); // preparando e validando
         $sql->execute();
 
-        #verificar se esta funcionando todos os registros
-        
+       #verificar se esta funcionando todos os registros
        $resultado = array();
-        // print_r($sql->fetchAll());
+        // echo '<pre>'; var_dump($sql->fetchAll()); exit;
+        //var_dump($sql->fetchAll());
+        
         while ($row = $sql->fetchObject('Postagem')){
             $resultado[] = $row;
         }
+        // echo '<pre>'; print_r($resultado); exit;
         #verificando se $resultado tem algum registro
         if(!$resultado) {
             throw new Exception("Não foi encontrado nenhum registro no banco");
