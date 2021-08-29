@@ -6,8 +6,11 @@ require_once './lib/Database/Connection.php';
 //import controllers
 require_once './app/Controller/HomeController.php';
 require_once './app/Controller/ErroController.php';
+require_once './app/Controller/PostContorller.php';
+require_once './app/Controller/SobreController.php';
 //importando Models
 require_once './app/Model/Postagem.php';
+require_once './app/Model/Comentario.php';
 
 //import docs composer
 require_once './vendor/autoload.php';

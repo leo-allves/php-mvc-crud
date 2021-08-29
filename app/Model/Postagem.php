@@ -30,6 +30,30 @@ class Postagem
         return $resultado;
         
     }
+
+    # Metodo estatico para PostController.php só quando clico uma postagem
+    public static function selecionarPosPortId($idPost)
+    {
+        $con = Connection::getConn(); //tipo PDO
+
+        $sql = "SELECT * FROM postagem WHERE id = :id";
+        $sql = $con->prepare($sql); //preparando
+        $sql->bindValue(':id', $idPost, PDO::PARAM_INT); //pegando e substituindo :id
+        $sql->execute();
+
+        #verificando se achou pegue o resultado e insira na class Postagem
+        $resultado = $sql->fetchObject('Postagem');
+
+        if(!$resultado){
+            throw new Exception("Não foi encontrado nenhum registro no banco");
+        }else{
+            //se existir a gente cria um array armazenando os comentários
+            $resultado->comentarios = Comentario::selecionarComentarios($resultado->id);
+        }
+        return $resultado;
+
+    }
+
 }
 ?>
 

@@ -20,9 +20,16 @@ class Core
         if (!class_exists($controller)) {
             $controller = 'ErroController';
         }
+        // die(var_dump($urlGet));
+        // verif. se existe param id na $urlGet
+        if(isset($urlGet['id']) && $urlGet['id'] != null){
+            $id = $urlGet['id'];
+        }else{
+            $id =null;
+        }
 
         #chamando á pagina Homecontroller e o metodo
-        call_user_func_array(array(new $controller, $acao), array());
+        call_user_func_array(array(new $controller, $acao), array('id'=>$id));
 
         #identificar qual página está acessando e se esta acessando uma existente
         // echo $controller;
