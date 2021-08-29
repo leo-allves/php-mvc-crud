@@ -8,6 +8,7 @@ require_once './app/Controller/HomeController.php';
 require_once './app/Controller/ErroController.php';
 require_once './app/Controller/PostContorller.php';
 require_once './app/Controller/SobreController.php';
+require_once './app/Controller/AdminController.php';
 //importando Models
 require_once './app/Model/Postagem.php';
 require_once './app/Model/Comentario.php';
