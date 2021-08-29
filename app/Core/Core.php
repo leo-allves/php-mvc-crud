@@ -4,8 +4,12 @@ class Core
 {   
     // function que recebe a url
     public function start($urlGet)
-    {
-        $acao = 'index';
+    {   
+        if(isset($urlGet['metodo'])){
+            $acao = $urlGet['metodo'];
+        }else{
+            $acao = 'index';
+        }
         // var_dump($urlGet);
         # declarando que todas as paginas tera na url o param pagina=...
         if (isset($urlGet['pagina'])) {

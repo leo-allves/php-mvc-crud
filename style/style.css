@@ -66,6 +66,14 @@ article h2 a{
 article h2 a:hover{
     text-decoration: underline;
 }
+span#admin:hover{
+    text-decoration: underline;
+}
+.new-post:hover{
+    text-decoration: underline;
+    color: rgb(136, 136, 240);
+    font-weight: bold;
+}
 
 article p{
     font-size: 15px;
