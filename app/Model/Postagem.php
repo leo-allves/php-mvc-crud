@@ -51,9 +51,74 @@ class Postagem
             $resultado->comentarios = Comentario::selecionarComentarios($resultado->id);
         }
         return $resultado;
-
     }
 
+    #Metodo para o insert chamdo na AdminController
+    public static function insert($dadosPosts)
+    {
+        //se os dados tiver vazio
+        if (empty($dadosPosts['autor']) || empty($dadosPosts['titulo']) || empty($dadosPosts['conteudo'])) {
+            throw new Exception("Preencha todos os campos!");
+
+            return false;
+        }
+
+        $con = Connection::getConn();
+
+        $sql = 'INSERT INTO postagem (autor, titulo, conteudo, data_criacao) VALUES (:aut, :tit, :cont, now())';
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':aut', $dadosPosts['autor']);
+        $sql->bindValue(':tit', $dadosPosts['titulo']);
+        $sql->bindValue(':cont', $dadosPosts['conteudo']);
+        $result = $sql->execute();
+
+        #criando validação para saber se inseriu ou não
+        if($result == false || $result == 0){
+            throw new Exception("Falha ao inserir postagem!");
+
+            return false;
+        }
+        return true;
+    }
+
+    public static function update($params)
+    {
+        $con = Connection::getConn();
+
+        $sql = "UPDATE postagem SET autor = :aut, titulo = :tit, conteudo = :cont WHERE id = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':aut', $params['autor']);
+        $sql->bindValue(':tit', $params['titulo']);
+        $sql->bindValue(':cont', $params['conteudo']);
+        $sql->bindValue(':id', $params['id']);
+        $resultado = $sql->execute();
+
+        if($resultado == 0){
+
+            throw new Exception("Falha ao alterar publicação!");
+
+            return false;
+        }
+        return true;
+    }
+
+    public static function delete($id)
+    {
+        $con = Connection::getConn();
+
+        $sql = "DELETE FROM postagem WHERE id = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':id', $id);
+        $resultado = $sql->execute();
+
+        if($resultado == 0){
+
+            throw new Exception("Falha ao deletar publicação!");
+
+            return false;
+        }
+        return true;
+    }
 }
 ?>
 

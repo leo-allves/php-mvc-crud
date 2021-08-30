@@ -6,17 +6,23 @@
     <thead>
         <tr>
             <th class="border border-gray-600">ID</th>
+            <th class="border border-gray-600">AUTOR</th>
             <th class="border border-gray-600">TÍTULO</th>
-            <th class="border border-gray-600">ALTERÇÃO</th>
+            <th class="border border-gray-600">CONTEUDO</th>
+            <th class="border border-gray-600">ALTERAÇÃO</th>
             <th class="border border-gray-600">DELEÇÃO</th>
         </tr>
     </thead>
     <tbody>
-        <tr class="bg-blue-200 text-gray-600">
-            <td class="border border-gray-600">fhgdfhgfdg</td>
-            <td class="border border-gray-600">dsv</td>
-            <td class="border border-gray-600">dsvsd</td>
-            <td class="border border-gray-600">sdvsv</td>
-        </tr>
+        {% for postagem in postagens %}
+            <tr class="bg-blue-200 text-gray-600">
+                <td class="border border-gray-600">{{postagem.id}}</td>
+                <td class="border border-gray-600">{{postagem.autor}}</td>
+                <td class="border border-gray-600">{{postagem.titulo}}</td>
+                <td class="border border-gray-600">{{postagem.conteudo}}</td>
+                <td class="border border-gray-600"><button type="button" class="bg-yellow-400 text-gray-800 rounded hover:bg-yellow-300 px-4 py-2 focus:outline-none"><a href="http://php-mvc-crud.test/?pagina=admin&metodo=change&id={{postagem.id}}">Alterar</a></button></td>
+                <td class="border border-gray-600"><button type="button" class="bg-red-500 text-gray-200 rounded hover:bg-red-400 px-4 py-2 focus:outline-none"><a href="http://php-mvc-crud.test/?pagina=admin&metodo=delete&id={{postagem.id}}">Deletar</a></button></td>
+            </tr>
+        {% endfor %}
     </tbody> 
 </table>
