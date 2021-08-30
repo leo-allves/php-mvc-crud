@@ -15,6 +15,33 @@
 
                 <br><hr><br>
 
+                <!-- #form de comentarios e respostas -->
+                <form action="http://php-mvc-crud.test/?pagina=post&metodo=addComent" method="POST" class="w-full md:w-auto">
+
+                    <div class="flex flex-wrap -mx-full  md:w-1/10">
+                        <div class="w-full px-1 mb-6">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                                Nome
+                            </label>
+                            <input
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                type="text" name="nome" placeholder="Digite seu nome">
+                            <input type="hidden" name="id" value="{{id}}">
+                        </div>
+              
+                        <div class="w-full px-1 mb-6">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                                Mensagem
+                            </label>
+                            <textarea class="appearance-none block bg-gray-200 text-gray-700 border border-gray-200 rounded w-full px-3 py-2 mb-2 rounded-lg  leading-tight focus:outline-none focus:bg-white focus:border-gray-500" rows="4" type="text" placeholder="Digite seu comentáiro" name="msg"></textarea>
+                        </div>
+              
+                        <div class="w-full px-1 mb-6">
+                          <button type="submit" class="bg-green-500 text-gray-100 rounded hover:bg-green-400 px-4 py-2 focus:outline-none float-right">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+
                 <!-- comentarios -->
                 <h3 class="font-semibold text-lg text-blue-500 text-base mb-3">Comentários</h3>
                 {% if comentarios == false %} <!--quand o array for vazio ou o-->

@@ -18,6 +18,7 @@ class PostController
 
             //cria um array 
             $parametros = array();
+            $parametros['id'] = $postagem->id;
             $parametros['titulo'] = $postagem->titulo;
             $parametros['conteudo'] = $postagem->conteudo;
             $parametros['data_criacao'] = $postagem->data_criacao;
@@ -32,7 +33,20 @@ class PostController
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        
-        
     }
+
+    public function addComent()
+    {
+        try {
+            #se conseguir inserir
+            #vai chmar a model responsavel por add os coment. no BD
+            Comentario::inserir($_POST);
+
+            header('Location: http://php-mvc-crud.test/?pagina=post&id='.$_POST['id']);
+
+        } catch (Exception $e) {
+            echo '<script>alert("'.$e->getMessage().'");</script>';
+            echo '<script>location.href="http://php-mvc-crud.test/?pagina=post&id='.$_POST['id'].'"</script>';
+        }
+    } 
 }
